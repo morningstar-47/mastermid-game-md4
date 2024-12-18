@@ -6,7 +6,7 @@ ATTEMPTS_MAX = 10
 COLORS = ['R', 'G', 'B', 'Y', 'O', 'P']
 
 
-def generate_code(length_key=COMBINAISON_LENGTH):
+def generate_secret_code(length_key=COMBINAISON_LENGTH):
     return [random.choice(COLORS) for _ in range(length_key)]
 
 
@@ -45,7 +45,7 @@ def checking_guess(guess, combinaison):
 
 
 def mastermind_terminal():
-    code = generate_code()
+    code = generate_secret_code()
     attempts = 0
 
     print("Bienvenue à Mastermind MD4 Hetic!")
