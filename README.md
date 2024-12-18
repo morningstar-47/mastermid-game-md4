@@ -6,7 +6,9 @@ Un jeu de logique captivant écrit en Python, inspiré du célèbre jeu Mastermi
 - Génération aléatoire de combinaisons secrètes.
 - Personnalisation de la difficulté (longueur de la combinaison, nombre de tentatives).
 - Feedback visuel clair avec des indications de correspondance (bon emplacement, bonne couleur).
-- Interface en ligne de commande simple et intuitive.
+- Deux versions disponibles :
+  - **Interface en ligne de commande** simple et intuitive.
+  - **Interface graphique (GUI)** pour une expérience utilisateur enrichie.
 
 ## 🎯 Objectif :
 Devinez la combinaison avant d'épuiser vos essais pour devenir le maître du jeu !
@@ -17,18 +19,24 @@ Devinez la combinaison avant d'épuiser vos essais pour devenir le maître du je
    git clone https://github.com/claude-morningstar47/mistermind-game-md4.git
    cd mistermind-game-md4
    ```
-2. Lancez le jeu :
+2. Pour lancer la version en ligne de commande :
    ```bash
    python mistermind.py
+   ```
+3. Pour lancer la version GUI :
+   ```bash
+   python mistermind_gui.py
    ```
 
 ## 🛠️ Pré-requis :
 - Python 3.7+
+- Pour la version GUI :
+  - Bibliothèques supplémentaires comme `pygame` (inclus avec Python).
 
 ## 📖 Contribuer :
 Les contributions sont les bienvenues ! Forkez le projet et soumettez une Pull Request pour partager vos idées ou améliorations.
 
 ## 👨‍👩‍👦 Auteurs :
-- Claude Mopeno-Bia 
-- Amine 
+- [JC Emmanuel Mopeno-Bia](https://github.com/claude-morningstar47)
+- [Amine Hamouma](https://github.com/HamoumaAmine)
 
