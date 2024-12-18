@@ -26,3 +26,19 @@ def get_player_guess():
                 break
         else:
             return guess
+
+
+def checking_guess(guess, combinaison):
+    correct_position = 0
+
+    for i in range(len(guess)):
+        if guess[i] == combinaison[i]:
+            correct_position += 1
+
+    correct_color = 0
+    for color in set(guess):
+        correct_color += min(guess.count(color), combinaison.count(color))
+
+    correct_color -= correct_position
+
+    return correct_position, correct_color
