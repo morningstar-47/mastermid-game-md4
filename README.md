@@ -4,7 +4,6 @@ Un jeu de logique captivant écrit en Python, inspiré du célèbre jeu Mastermi
 
 ## ✨ Fonctionnalités :
 - Génération aléatoire de combinaisons secrètes.
-- Personnalisation de la difficulté (longueur de la combinaison, nombre de tentatives).
 - Feedback visuel clair avec des indications de correspondance (bon emplacement, bonne couleur).
 - Deux versions disponibles :
   - **Interface en ligne de commande** simple et intuitive.
