@@ -1,4 +1,4 @@
-# Mistermind Game MD4 🧩
+# Mastermind Game MD4 🧩
 
 Un jeu de logique captivant écrit en Python, inspiré du célèbre jeu Mastermind ! Le but du jeu est de deviner une combinaison secrète en un nombre limité de tentatives. À chaque essai, des indices sont fournis pour guider le joueur vers la solution.
 
