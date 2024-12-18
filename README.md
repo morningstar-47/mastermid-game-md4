@@ -18,7 +18,7 @@ Devinez la combinaison avant d'épuiser vos essais pour devenir le maître du je
 
 1. Clonez le dépôt :
    ```bash
-   git clone https://github.com/claude-morningstar47/mistermind-game-md4.git
+   git clone https://github.com/claude-morningstar47/mastermind-game-md4.git
    cd mastermind-game-md4
    ```
 2. Pour lancer la version en ligne de commande :
@@ -40,8 +40,3 @@ Devinez la combinaison avant d'épuiser vos essais pour devenir le maître du je
 
 - [JC Emmanuel Mopeno-Bia](https://github.com/claude-morningstar47)
 - [Amine Hamouma](https://github.com/HamoumaAmine)
-
-## Assistant
-
-- [Claude AI](https://claude.ai/)
-- [Chat GPT](https://chatgpt.com/)

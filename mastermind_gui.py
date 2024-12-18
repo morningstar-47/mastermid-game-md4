@@ -27,23 +27,38 @@ pygame.init()
 font = pygame.font.Font(None, 36)
 
 
-def generate_secret_code(length_key=CODE_LENGTH):
-    return [random.choice(list(COLORS.keys())) for _ in range(length_key)]
+def generate_secret_code(length=CODE_LENGTH):
+    secret_code = []
+    for _ in range(length):
+        color = random.choice(list(COLORS.keys()))
+        secret_code.append(color)
+    return secret_code
 
 
 def evaluate_guess(secret_code, guess):
     secret_copy = secret_code.copy()
     guess_copy = guess.copy()
 
-    black_pegs = sum(s == g for s, g in zip(secret_copy, guess_copy))
-
-    secret_copy = [c for c, t in zip(secret_copy, guess_copy) if c != t]
-    guess_copy = [t for c, t in zip(secret_code, guess_copy) if c != t]
+    black_pegs = 0
+    for key in range(len(secret_copy)):
+        if secret_copy[key] == guess_copy[key]:
+            black_pegs += 1
+            secret_copy[key] = None
+            guess_copy[key] = None
 
     white_pegs = 0
     for color in guess_copy:
-        if color in secret_copy:
+        if color is not None and color in secret_copy:
             white_pegs += 1
-            secret_copy.remove(color)
+            secret_copy[secret_copy.index(color)] = None
 
     return black_pegs, white_pegs
+
+
+if __name__ == '__main__':
+    secret_code = generate_secret_code()
+
+    guess = ['Blue', 'Red', 'Green', 'Yellow']
+    result = evaluate_guess(secret_code, guess)
+    print('le code secret est : ', secret_code)
+    print(result)

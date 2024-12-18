@@ -13,7 +13,7 @@ def generate_secret_code(length_key=COMBINAISON_LENGTH):
 def get_player_guess():
     while True:
         guess = input(
-            "Entrez votre combinaison (ex: R G B Y) : ").upper().split()
+            "Entrez votre combinaison, ex: R G B Y : ").upper().split()
 
         if len(guess) != COMBINAISON_LENGTH:
             print(f"Veuillez entrer exactement {COMBINAISON_LENGTH} couleurs.")
@@ -55,7 +55,6 @@ def mastermind_terminal():
     print(f"Vous avez {ATTEMPTS_MAX} essais au total.")
 
     while attempts < ATTEMPTS_MAX:
-        print(f"Essai {attempts + 1} sur {ATTEMPTS_MAX}.")
         guess = get_player_guess()
 
         correct_position, correct_color = checking_guess(guess, code)
@@ -67,7 +66,7 @@ def mastermind_terminal():
             return
 
         attempts += 1
-        print(f"Il vous reste {ATTEMPTS_MAX - attempts} essai(s).")
+        print(f"Il vous reste {ATTEMPTS_MAX - attempts} essai.")
 
     print(f"Désolé, vous avez utilisé tous vos essais.")
     print(f"La combinaison correcte était : {' '.join(code)}")
