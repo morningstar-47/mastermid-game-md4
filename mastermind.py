@@ -12,20 +12,21 @@ def generate_secret_code(length_key=COMBINAISON_LENGTH):
 
 def get_player_guess():
     while True:
-        guess = input(
-            "Entrez votre combinaison, ex: R G B Y : ").upper().split()
+        guess = input("Entrez votre combinaison, ex: R G B Y : ")
 
-        if len(guess) != COMBINAISON_LENGTH:
+        correct_guess = guess.upper().split()
+
+        if len(correct_guess) != COMBINAISON_LENGTH:
             print(f"Veuillez entrer exactement {COMBINAISON_LENGTH} couleurs.")
             continue
 
-        for color in guess:
+        for color in correct_guess:
             if color not in COLORS:
                 print(f"Couleur invalide : {
                       color}. Veuillez utiliser seulement {', '.join(COLORS)}.")
                 break
         else:
-            return guess
+            return correct_guess
 
 
 def checking_guess(guess, combinaison):
