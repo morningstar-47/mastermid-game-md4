@@ -74,4 +74,7 @@ def mastermind_terminal():
 
 
 if __name__ == "__main__":
-    mastermind_terminal()
+    try:
+        mastermind_terminal()
+    except KeyboardInterrupt:
+        print("\n Fin de la partie")

@@ -55,6 +55,11 @@ def evaluate_guess(secret_code, guess):
     return black_pegs, white_pegs
 
 
+def display_text(screen, text, x, y, color=(0, 0, 0)):
+    label = font.render(text, True, color)
+    screen.blit(label, (x, y))
+
+
 if __name__ == '__main__':
     secret_code = generate_secret_code()
 
