@@ -60,8 +60,103 @@ def display_text(screen, text, x, y, color=(0, 0, 0)):
     screen.blit(label, (x, y))
 
 
+def draw_circle(screen, x, y, color):
+    pygame.draw.circle(screen, COLORS[color], (x, y), CIRCLE_RADIUS)
+    pygame.draw.circle(screen, (0, 0, 0), (x, y), CIRCLE_RADIUS, 2)
+
+
+def draw_feedback_pegs(screen, black_pegs, white_pegs, row):
+    start_x = MARGIN_X + SPACING_X * CODE_LENGTH + 50
+    start_y = MARGIN_Y + row * SPACING_Y
+
+    for index in range(black_pegs):
+        x = start_x + (index * 20)
+        pygame.draw.circle(screen, (0, 0, 0), (x, start_y), 8)
+
+    for index in range(white_pegs):
+        x = start_x + ((index + black_pegs) * 20)
+        pygame.draw.circle(screen, (128, 128, 128), (x, start_y), 8)
+
+
 if __name__ == '__main__':
     secret_code = generate_secret_code()
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption('Mastermind')
+
+    current_attempt = 0
+    guesses = []
+    current_guess = []
+    game_over = False
+    won = False
+
+    color_buttons = []
+    for index, color in enumerate(COLORS.keys()):
+        x = MARGIN_X + index * 80
+        y = HEIGHT - 100
+        color_buttons.append((pygame.Rect(
+            x - CIRCLE_RADIUS, y - CIRCLE_RADIUS, CIRCLE_RADIUS * 2, CIRCLE_RADIUS * 2), color))
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if not game_over and event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+
+                for button, color in color_buttons:
+                    if button.collidepoint(mouse_pos) and len(current_guess) < CODE_LENGTH:
+                        current_guess.append(color)
+
+                        if len(current_guess) == CODE_LENGTH:
+                            black_pegs, white_pegs = evaluate_guess(
+                                secret_code, current_guess)
+                            guesses.append(
+                                (current_guess.copy(), (black_pegs, white_pegs)))
+
+                            if black_pegs == CODE_LENGTH:
+                                game_over = True
+                                won = True
+                            elif current_attempt >= MAX_ATTEMPTS - 1:
+                                game_over = True
+
+                            current_guess = []
+                            current_attempt += 1
+
+     # Draw game board
+        screen.fill((200, 200, 200))
+
+        # Draw previous guesses
+        for row, (guess, feedback) in enumerate(guesses):
+            for col, color in enumerate(guess):
+                x = MARGIN_X + col * SPACING_X
+                y = MARGIN_Y + row * SPACING_Y
+                draw_circle(screen, x, y, color)
+            draw_feedback_pegs(screen, feedback[0], feedback[1], row)
+
+        # Draw current incomplete guess
+        for col, color in enumerate(current_guess):
+            x = MARGIN_X + col * SPACING_X
+            y = MARGIN_Y + current_attempt * SPACING_Y
+            draw_circle(screen, x, y, color)
+
+        # Draw color selection buttons
+        for button, color in color_buttons:
+            pygame.draw.circle(
+                screen, COLORS[color], button.center, CIRCLE_RADIUS)
+            pygame.draw.circle(screen, (0, 0, 0),
+                               button.center, CIRCLE_RADIUS, 2)
+
+        # Display game over message
+        if game_over:
+            if won:
+                display_text(screen, "You Won!", WIDTH//2 - 50, HEIGHT//2)
+            else:
+                display_text(screen, "Game Over!", WIDTH//2 - 50, HEIGHT//2)
+                display_text(screen, f"Secret code was: {' '.join(secret_code)}",
+                             WIDTH//2 - 150, HEIGHT//2 + 40)
+
+        pygame.display.flip()
 
     guess = ['Blue', 'Red', 'Green', 'Yellow']
     result = evaluate_guess(secret_code, guess)
