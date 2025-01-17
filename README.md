@@ -38,5 +38,5 @@ Devinez la combinaison avant d'épuiser vos essais pour devenir le maître du je
 
 ## 👨‍👩‍👦 Auteurs :
 
-- [JC Emmanuel Mopeno-Bia](https://github.com/claude-morningstar47)
+- [JC Emmanuel Mopeno-Bia](https://github.com/morningstar-47)
 - [Amine Hamouma](https://github.com/HamoumaAmine)
